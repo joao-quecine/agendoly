@@ -1,0 +1,53 @@
+body {
+      background-color: #F3E2D4;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .auth-card {
+      background: white;
+      border-radius: 12px;
+      padding: 30px;
+      max-width: 400px;
+      width: 100%;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      position: absolute;
+      opacity: 0;
+      transform: translateY(20px);
+      pointer-events: none;
+      transition: all 0.4s ease;
+    }
+    .auth-card.active {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+      position: relative;
+    }
+    .auth-card h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #17313E;
+    }
+    .btn-custom {
+      background-color: #415E72;
+      color: white;
+      font-weight: bold;
+      width: 100%;
+    }
+    .btn-custom:hover {
+      background-color: #17313E;
+    }
+    .toggle-link {
+      text-align: center;
+      margin-top: 15px;
+    }
+    .toggle-link a {
+      color: #415E72;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .toggle-link a:hover {
+      text-decoration: underline;
+      color: #17313E;
+    }

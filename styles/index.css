@@ -1,0 +1,163 @@
+
+
+ body {
+  background-color: #F3E2D4;
+}
+
+header {
+  background-color: #17313E;
+  color: white;
+  padding: 15px 30px;
+}
+
+.calendar {
+  max-width: 1000px;
+  margin: 30px auto;
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.area-tarefas {
+  max-width: 1000px;
+  margin: 30px auto;
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column; /* organiza as tarefas em coluna */
+  gap: 10px; /* espaço entre tarefas */
+}
+
+.tarefa {
+  display: flex;           /* elementos da tarefa em linha */
+  align-items: center;     /* centraliza verticalmente */
+  gap: 10px;               /* espaço entre botão, descrição e outros */
+  padding: 5px 10px;
+  border-bottom: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: #fff;
+  
+}
+
+.tarefa-check-button{
+  border: none;
+  background: none;
+}
+
+.tarefa-check-button img {
+  width: 24px;
+  height: 24px;
+}
+
+.tarefa .descricao {
+  flex: 1; /* ocupa o espaço restante */
+  word-break: break-word;
+}
+
+.tarefa button.btn-sm {
+  flex-shrink: 0; /* impede que os botões encolham */
+}
+
+/* Calendário */
+.calendar-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.calendar-header select,
+.calendar-header input {
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 5px;
+}
+
+.btn-nav {
+  background-color: #415E72;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-nav:hover {
+  background-color: #17313E;
+}
+
+.weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #17313E;
+  font-size: clamp(0.7rem, 2vw, 1rem);
+}
+
+.dias {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+}
+
+.dia {
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: clamp(1rem, 3vw, 1.6rem);
+  font-weight: bold;
+  cursor: pointer;
+  position: relative;
+  transition: 0.2s;
+}
+
+.dia.selected {
+  border: 2px solid #17313E;
+}
+
+.dia:hover {
+  background-color: #415E72;
+  color: white;
+}
+
+.descricao.concluida {
+  text-decoration: line-through;
+  color: #666;
+}
+
+/* Badge de evento (barra embaixo do número) */
+.dia.has-event::after {
+  content: "";
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50%;
+  height: 6px;
+  background-color: #17313E;
+  border-radius: 3px;
+}
+
+@media (max-width: 576px) {
+  .calendar {
+    padding: 15px;
+  }
+
+  .dia {
+    font-size: clamp(0.8rem, 4vw, 1.2rem);
+  }
+}
