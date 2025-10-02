@@ -23,22 +23,22 @@
     <div class="calendar-header">
       <button class="btn-nav" onclick="botoesLaterais(-1)">&lt;</button>
 
-      <select id="monthSelect">
-        <option value="0">Janeiro</option>
-        <option value="1">Fevereiro</option>
-        <option value="2">Março</option>
-        <option value="3">Abril</option>
-        <option value="4">Maio</option>
-        <option value="5">Junho</option>
-        <option value="6">Julho</option>
-        <option value="7">Agosto</option>
-        <option value="8">Setembro</option>
-        <option value="9">Outubro</option>
-        <option value="10">Novembro</option>
-        <option value="11">Dezembro</option>
+      <select id="monthSelect" onchange="atualizarCalendario()">
+        <option <?php echo (date("n")==0)? "selected": "" ?> value="0">Janeiro</option>
+        <option <?php echo (date("n")==1)? "selected": "" ?> value="1">Fevereiro</option>
+        <option <?php echo (date("n")==2)? "selected": "" ?> value="2">Março</option>
+        <option <?php echo (date("n")==3)? "selected": "" ?> value="3">Abril</option>
+        <option <?php echo (date("n")==4)? "selected": "" ?> value="4">Maio</option>
+        <option <?php echo (date("n")==5)? "selected": "" ?> value="5">Junho</option>
+        <option <?php echo (date("n")==6)? "selected": "" ?> value="6">Julho</option>
+        <option <?php echo (date("n")==7)? "selected": "" ?> value="7">Agosto</option>
+        <option <?php echo (date("n")==8)? "selected": "" ?> value="8">Setembro</option>
+        <option <?php echo (date("n")==9)? "selected": "" ?> value="9">Outubro</option>
+        <option <?php echo (date("n")==10)? "selected": "" ?> value="10">Novembro</option>
+        <option <?php echo (date("n")==11)? "selected": "" ?> value="11">Dezembro</option>
       </select>
 
-      <input id="yearInput" type="number" max="2050" min="1900" value="2025" class="form-control" style="width:100px;">
+      <input onchange="atualizarCalendario()" id="yearInput" type="number" max="2050" min="1900" value="2025" class="form-control" style="width:100px;">
 
       <button class="btn-nav" onclick="botoesLaterais(1)">&gt;</button>
     </div>
@@ -55,28 +55,28 @@
     </div>
 
     <!-- Dias do mês (exemplo estático) -->
-    <div class="dias">
+    <div class="dias" id="dias">
 
-      <div onclick="openCard(event)" class="dia selected">1</div>
-      <div onclick="openCard(event)" class="dia">2</div>
-      <div onclick="openCard(event)" class="dia">3</div>
-      <div onclick="openCard(event)" class="dia">4</div>
-      <div onclick="openCard(event)" class="dia">5</div>
-      <div onclick="openCard(event)" class="dia">6</div>
-      <div onclick="openCard(event)" class="dia">7</div>
-      <div onclick="openCard(event)" class="dia">8</div>
-
+    
     </div>
   </div>
 
-  <!--area de tarefas-->
-  <div class="area-tarefas">
+  
 
+  <!-- btn adicionar -->
+   <div class="adicionar_tarefasBTN">
   <!-- Adicionar novas tarefas -->
   <div class="add-tarefa mt-3 d-flex gap-2">
     <input id="novaTarefaInput" type="text" class="form-control" placeholder="Nova tarefa...">
     <button class="btn btn-primary" onclick="adicionarTarefa()">Adicionar</button>
   </div>
+  </div>
+
+  <!--area de tarefas-->
+  <div class="area-tarefas">
+
+  </div>
+
 
   <!--script-->
   <script src="script.js"></script>

@@ -1,13 +1,15 @@
 //---------------------- funçoes das funcionalidades do frontend --------------------
-
-
+atualizarCalendario()
 //---- funcao selecionar o dia
 function openCard(event) {
-    var element = event.target; //pega o dia que foi clicado
-    document.querySelector(".selected").classList.remove("selected");
-    element.classList.add("selected");
+    const dia = event.currentTarget;  
 
-    //falta implementar a abertura da lista de tarefas de cada dia ao clicar
+    const selecionado = document.querySelector(".dia.selected");
+    if (selecionado) {
+        selecionado.classList.remove("selected");
+    }
+
+    dia.classList.add("selected");
 }
 
 //---- funcao listagem das tarefas daquele dia na area de tarefas -----
@@ -112,6 +114,59 @@ function alterarEstadoTarefa(event) {
     } else {
         img.src = "img/circulo.png";
     }
+}
+
+
+function gerarDiaHTML(dia, temTarefa = false) {
+  const hoje= new Date()
+  return `
+<div class="dia ${temTarefa ? "com-tarefa" : ""} ${hoje.getDate()==dia? "selected" : ""}" onclick="openCard(event)">
+      <span>${dia}</span>
+    </div>
+
+  `;
+}
+
+function atualizarCalendario() {
+    let mes = document.querySelector("#monthSelect").value
+    let ano = document.querySelector("#yearInput").value
+
+    const id_usuario = 1; // parâmetro
+    const xhr = new XMLHttpRequest();
+
+    xhr.open("GET", `tools/atualizarCalendario.php?mes=${mes}&ano=${ano}`, true);
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            const dados = JSON.parse(xhr.responseText);
+
+            if (dados.status === "success") {
+                const diasContainer = document.getElementById("dias");
+                diasContainer.innerHTML = ""; // limpa antes
+
+                const diasNoMes = dados.dias_no_mes;
+                const primeiroDiaSemana = dados.primeiro_dia_semana;
+
+                // cria um set com os dias que têm tarefas
+                const diasComTarefas = new Set(
+                    dados.tarefas.map(t => new Date(t.data).getDate())
+                );
+
+                // espaços em branco até alinhar o primeiro dia
+                for (let i = 0; i < primeiroDiaSemana; i++) {
+                    diasContainer.innerHTML += `<div class="dia vazio"></div>`;
+                }
+
+                // monta os dias do mês
+                for (let dia = 1; dia <= diasNoMes; dia++) {
+                    const temTarefa = diasComTarefas.has(dia);
+                    diasContainer.innerHTML += gerarDiaHTML(dia, temTarefa);
+                }
+            }
+
+
+        }
+    };
+    xhr.send();
 }
 
 //---------------------------------- area das funcoes de comunicaçao com o beckend--------------------
